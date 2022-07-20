@@ -1,8 +1,79 @@
-function getComputerChoice(rPS) {
-let computerSelection = rPS[Math.floor(Math.random()*rPS.length)];
-return computerSelection;
+function getComputerChoice() {
+    let rPS = ['Rock', 'Paper', 'Scissors'];
+    let res = rPS[Math.floor(Math.random()*rPS.length)];
+    return res;
 }
 
+function playRound(playerSelection, computerSelection) {
+    playerSelection = prompt('Write here');
+    let input = playerSelection.toLowerCase();
+    let output = '';
+    
+    if(input == 'rock') {
+        switch(computerSelection) {
+            case 'Rock':
+                output += "It's a tie!";
+                break;
+                case 'Paper':
+                    output += 'You lose! Paper beats Rock';
+                    break;
+                    case 'Scissors':
+                output += 'You win! Rock beats Scissors';
+            }
+        }
+        
+        if(input == 'paper') {
+            switch(computerSelection) {
+                case 'Rock':
+                output += "You win! Paper beats Rock";
+                break;
+                case 'Paper':
+                    output += "It's a tie!";
+                    break;
+                    case 'Scissors':
+                        output += 'You lose! Scissors beats Paper';
+            }
+        }
 
-let result = getComputerChoice(['Rock', 'Paper', 'Scissors']);
-console.log(result);
+        if(input == 'scissors') {
+            switch(computerSelection) {
+                case 'Rock':
+                    output += "You lose! Rock beats Scissors";
+                    break;
+                    case 'Paper':
+                        output += 'You win! Scissors beats Paper';
+                        break;
+                        case 'Scissors':
+                            output += "It's a tie!";
+                        }
+                    }
+                    return output;
+                }
+                
+                
+                
+
+function game() {
+    let compScore = 0;
+    let playerScore = 0;
+
+    for(let i = 0; i < 5; i++){
+        let round = playRound(null, getComputerChoice());
+        console.log(round);
+        if(round.includes('win') == true) {
+            playerScore += 1;
+        }
+        if(round.includes('lose') == true) {
+            compScore += 1;
+        }
+    }
+
+    if(playerScore > compScore){
+        console.log("YOU WIN THE GAME");
+    }
+    if(compScore > playerScore){
+        console.log('LOOOOOOOSER');
+    }
+}
+
+console.log(game());
